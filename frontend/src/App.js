@@ -5,6 +5,7 @@ import ForgetPassword from "./components/auth/ForgetPassword";
 import SignIn from "./components/auth/SignIn";
 import SignUp from "./components/auth/SignUp";
 import Home from "./components/Home";
+import NotFound from "./components/NotFound";
 import Navbar from "./components/user/Navbar";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="/auth/verification" element={<EmailVerification />} />
         <Route path="/auth/forget-password" element={<ForgetPassword />} />
         <Route path="/auth/confirm-password" element={<ConfirmPassword />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );

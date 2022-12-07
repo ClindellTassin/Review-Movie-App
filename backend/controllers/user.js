@@ -33,7 +33,7 @@ exports.create = async (req, res) => {
         `
     })
 
-    res.status(201).json({ message: 'Please verify your email. verification code has been sent to your email' })
+    res.status(201).json({ user: { id: newUser._id, name: newUser.name, email: newUser.email } })
 }
 
 exports.verifyEmail = async (req, res) => {
