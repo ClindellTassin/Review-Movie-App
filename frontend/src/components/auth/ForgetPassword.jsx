@@ -4,19 +4,17 @@ import FormInput from "../form/FormInput";
 import Submit from "../form/Submit";
 import Title from "../form/Title";
 
-export default function SignUp() {
+export default function ForgetPassword() {
     return (
         <div className="fixed inset-0 bg-primary -z-10 flex justify-center items-center">
             <Container>
-                <form className="bg-secondary rounded p-6 w-72 space-y-6">
-                    <Title>Sign Up</Title>
-                    <FormInput label="Name" placeholder="Nunnie Joe" name="name" />
+                <form className="bg-secondary rounded p-6 w-96 space-y-6">
+                    <Title>Please Enter Your Email</Title>
                     <FormInput label="Email" placeholder="nunniejoe@email.com" name="email" />
-                    <FormInput label="Password" placeholder="********" name="password" />
-                    <Submit value='Sign Up' />
+                    <Submit value='Send Link' />
                     <div className="flex justify-between">
-                        <CustomLink to='/auth/forget-password'>Forget Password</CustomLink>
                         <CustomLink to='/auth/signin'>Sign In</CustomLink>
+                        <CustomLink to='/auth/signup'>Sign Up</CustomLink>
                     </div>
                 </form>
             </Container>

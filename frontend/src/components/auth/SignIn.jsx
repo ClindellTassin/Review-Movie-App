@@ -1,4 +1,5 @@
 import Container from "../Container";
+import CustomLink from "../CustomLink";
 import FormInput from "../form/FormInput";
 import Submit from "../form/Submit";
 import Title from "../form/Title";
@@ -14,8 +15,8 @@ export default function SignIn() {
                     <Submit value='Sign In' />
 
                     <div className="flex justify-between">
-                        <a className="text-dark-subtle hover:text-white transition" href="#">Forget Password</a>
-                        <a className="text-dark-subtle hover:text-white transition" href="#">Sign Up</a>
+                        <CustomLink to='/auth/forget-password'>Forget Password</CustomLink>
+                        <CustomLink to='/auth/signup'>Sign Up</CustomLink>
                     </div>
                 </form>
             </Container>
