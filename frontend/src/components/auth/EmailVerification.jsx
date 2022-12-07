@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from "react";
+import { commonModalClasses } from "../../utils/theme";
 import Container from "../Container";
+import FormContainer from "../form/FormContainer";
 import Submit from "../form/Submit";
 import Title from "../form/Title";
 
@@ -46,21 +48,21 @@ export default function EmailVerification() {
     }, [activeOtpIndex])
 
     return (
-        <div className="fixed inset-0 bg-primary -z-10 flex justify-center items-center">
+        <FormContainer>
             <Container>
-                <form className="bg-secondary rounded p-6 space-y-6">
+                <form className={commonModalClasses}>
                     <div>
                         <Title>Please Enter Your Verification Code to verify account</Title>
-                        <p className="text-center text-dark-subtle">Verification Code has been sent to email</p>
+                        <p className="text-center dark:text-dark-subtle text-light-subtle">Verification Code has been sent to email</p>
                     </div>
                     <div className="flex justify-center items-center space-x-4">
                         {otp.map((_, index) => {
-                            return <input key={index} ref={activeOtpIndex === index ? inputRef : null} onChange={handleOtpChange} onKeyDown={(e) => handleKeyDown(e, index)} type='number' value={otp[index] || ""} className="w-12 h-12 border-2 border-dark-subtle focus:border-white rounded bg-transparent outline-none text-center text-white font-semibold text-xl spin-button-none" />
+                            return <input key={index} ref={activeOtpIndex === index ? inputRef : null} onChange={handleOtpChange} onKeyDown={(e) => handleKeyDown(e, index)} type='number' value={otp[index] || ""} className="w-12 h-12 border-2 dark:border-dark-subtle border-light-subtle dark:focus:border-white focus:border-primary rounded bg-transparent outline-none text-center dark:text-white text-primary font-semibold text-xl spin-button-none" />
                         })}
                     </div>
                     <Submit value='Send Link' />
                 </form>
             </Container>
-        </div>
+        </FormContainer>
     )
 }
