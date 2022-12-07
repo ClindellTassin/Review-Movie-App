@@ -1,5 +1,6 @@
 const express = require("express");
 const { create, verifyEmail, resendEmailVerificationToken, forgetPassword, sendResetPasswordTokenStatus, resetPassword, signIn } = require("../controllers/user");
+const { isAuth } = require("../middlewares/auth");
 const { isValidPassResetToken } = require("../middlewares/user");
 const { userValidator, validate, validatePassword, signInValidator } = require("../middlewares/validator");
 
@@ -12,5 +13,9 @@ router.post('/forget-password', forgetPassword)
 router.post('/verify-pass-reset-token', isValidPassResetToken, sendResetPasswordTokenStatus)
 router.post('/reset-password', validatePassword, validate, isValidPassResetToken, resetPassword)
 router.post('/sign-in', signInValidator, validate, signIn)
+router.get('/is-auth', isAuth, (req, res) => {
+    const { user } = req;
+    res.json({ user: { id: user._id, name: user.name, email: user.email } })
+})
 
 module.exports = router;
