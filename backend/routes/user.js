@@ -15,7 +15,7 @@ router.post('/reset-password', validatePassword, validate, isValidPassResetToken
 router.post('/sign-in', signInValidator, validate, signIn)
 router.get('/is-auth', isAuth, (req, res) => {
     const { user } = req;
-    res.json({ user: { id: user._id, name: user.name, email: user.email } })
+    res.json({ user: { id: user._id, name: user.name, email: user.email, isVerified: user.isVerified } })
 })
 
 module.exports = router;

@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react"
 import { getIsAuth, signInUser } from "../api/auth"
+import { useNotification } from "../hooks"
 
 export const AuthContext = createContext()
 
@@ -12,11 +13,13 @@ const defaultAuthInfo = {
 
 export default function AuthProvider({ children }) {
     const [authInfo, setAuthInfo] = useState({ ...defaultAuthInfo })
+    const { updateNotification } = useNotification()
 
     const handleLogin = async (email, password) => {
         setAuthInfo({ ...authInfo, isPending: true })
         const { error, user } = await signInUser({ email, password })
         if (error) {
+            updateNotification('error', error)
             return setAuthInfo({ ...authInfo, isPending: false, error })
         }
 
@@ -31,7 +34,10 @@ export default function AuthProvider({ children }) {
         setAuthInfo({ ...authInfo, isPending: true })
         const { error, user } = await getIsAuth(token)
 
-        if (error) return setAuthInfo({ ...authInfo, isPending: false, error })
+        if (error) {
+            updateNotification('error', error)
+            return setAuthInfo({ ...authInfo, isPending: false, error })
+        }
 
         setAuthInfo({ profile: { ...user }, isLoggedIn: true, isPending: false, error: '' })
     }
