@@ -15,6 +15,12 @@ exports.signInValidator = [
     check('password').trim().not().isEmpty().withMessage('Password is missing')
 ]
 
+exports.actorInfoValidator = [
+    check("name").trim().not().isEmpty().withMessage("Name is missing"),
+    check("about").trim().not().isEmpty().withMessage("About is missing"),
+    check("gender").trim().not().isEmpty().withMessage("Gender is missing"),
+]
+
 exports.validate = (req, res, next) => {
     const error = validationResult(req).array()
     if (error.length) {
