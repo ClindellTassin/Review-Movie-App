@@ -49,10 +49,6 @@ export default function SignIn() {
         handleLogin(userInfo.email, userInfo.password)
     };
 
-    useEffect(() => {
-        if (isLoggedIn) navigate('/')
-    }, [isLoggedIn])
-
     return (
         <FormContainer>
             <Container>
