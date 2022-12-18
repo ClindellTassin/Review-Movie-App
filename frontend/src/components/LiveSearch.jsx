@@ -30,7 +30,10 @@ export default function LiveSearch({
   };
 
   const handleSelection = (selectedItem) => {
-    onSelect(selectedItem);
+    if (selectedItem) {
+      onSelect(selectedItem);
+      closeSearch();
+    }
   };
 
   const handleKeyDown = ({ key }) => {
@@ -38,13 +41,15 @@ export default function LiveSearch({
     const keys = ["ArrowDown", "ArrowUp", "Enter", "Escape"];
     if (!keys.includes(key)) return;
 
-    // move selection up and down
     if (key === "ArrowDown") {
       nextCount = (focusedIndex + 1) % results.length;
     }
+
     if (key === "ArrowUp") {
       nextCount = (focusedIndex + results.length - 1) % results.length;
     }
+
+    if (key === "Escape") return closeSearch();
 
     if (key === "Enter") return handleSelection(results[focusedIndex]);
 
@@ -88,15 +93,6 @@ export default function LiveSearch({
     </div>
   );
 }
-
-// const renderItem = ({ id, name, avatar }) => {
-//   return (
-//     <div className="flex">
-//       <img src={avatar} alt="" />
-//       <p>{name}</p>
-//     </div>
-//   );
-// };
 
 const SearchResults = ({
   visible,
