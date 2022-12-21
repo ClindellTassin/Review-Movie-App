@@ -15,6 +15,7 @@ export default function LiveSearch({
 }) {
   const [displaySearch, setDisplaySearch] = useState(false);
   const [focusedIndex, setFocusedIndex] = useState(-1);
+  const [defaultValue, setDefaultValue] = useState('')
 
   const handleOnFocus = () => {
     if (results.length) setDisplaySearch(true);
@@ -28,6 +29,11 @@ export default function LiveSearch({
   const handleOnBlur = () => {
     closeSearch();
   };
+
+  const handleChange = (e) => {
+    setDefaultValue(e.target.value);
+    onChange && onChange(e);
+  }
 
   const handleSelection = (selectedItem) => {
     if (selectedItem) {
@@ -62,6 +68,10 @@ export default function LiveSearch({
       : commonInputClasses + " border-2 rounded p-1 text-lg";
   };
 
+  useEffect(() => {
+    if (value) setDefaultValue(value)
+  }, [value])
+
   return (
     <div
       tabIndex={1}
@@ -76,8 +86,8 @@ export default function LiveSearch({
         className={getInputStyle()}
         placeholder={placeholder}
         onFocus={handleOnFocus}
-        value={value}
-        onChange={onChange}
+        value={defaultValue}
+        onChange={handleChange}
         onBlur={handleOnBlur}
         onKeyDown={handleKeyDown}
       />
