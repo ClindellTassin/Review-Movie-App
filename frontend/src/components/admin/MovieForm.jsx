@@ -245,7 +245,7 @@ export default function MovieForm() {
                     <Submit value='Upload' onClick={handleSubmit} type='button' />
                 </div>
                 <div className="w-[30%] space-y-5">
-                    <PosterSelector name="poster" onChange={handleChange} selectedPoster={selectedPosterForUI} accept="image/jpg, image/jpeg, image/png" />
+                    <PosterSelector name="poster" onChange={handleChange} selectedPoster={selectedPosterForUI} label="Select Poster" accept="image/jpg, image/jpeg, image/png" />
 
                     <GenresSelector badge={genres.length} onClick={displayGenresModal} />
 
