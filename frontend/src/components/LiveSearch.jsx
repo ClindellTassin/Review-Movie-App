@@ -69,7 +69,12 @@ export default function LiveSearch({
   };
 
   useEffect(() => {
-    if (value) setDefaultValue(value)
+    if (results.length) return setDisplaySearch(true)
+    setDisplaySearch(false)
+  }, [results.length])
+
+  useEffect(() => {
+    setDefaultValue(value)
   }, [value])
 
   return (

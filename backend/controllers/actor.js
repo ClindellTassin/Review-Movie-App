@@ -93,7 +93,7 @@ exports.getLatestActors = async (req, res) => {
 
   const actors = result.map((actor) => formatActor(actor));
 
-  res.json(actors);
+  res.json({ results: actors });
 };
 
 exports.getSingleActor = async (req, res) => {
